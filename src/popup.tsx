@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./style.css"
 
 function IndexPopup() {
   const [data, setData] = useState("")
@@ -8,7 +9,7 @@ function IndexPopup() {
       style={{
         padding: 16
       }}>
-      <h2>
+      <h2 className="text-2xl font-bold bg-red-500">
         Welcome to your{" "}
         <a href="https://www.plasmo.com" target="_blank">
           Plasmo
