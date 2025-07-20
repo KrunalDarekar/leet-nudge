@@ -1,33 +1,74 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+# 💡 Leet-Nudge
 
-## Getting Started
+A browser extension that helps you solve LeetCode problems by providing context-aware hints without spoiling the solution.
 
-First, run the development server:
+## 🎯 Features
 
+- **Smart Detection**: Automatically detects when you're on a LeetCode problem page
+- **Non-intrusive Widget**: Floating 💡 button in the bottom-right corner
+- **Context-Aware Hints**: Provides hints based on your current code and problem
+- **Learning-Focused**: Guides you toward the solution without giving it away
+- **Clean UI**: Modern, responsive design that doesn't interfere with your workflow
+
+## 🚀 Getting Started
+
+### Development
+
+1. Install dependencies:
 ```bash
-pnpm dev
-# or
-npm run dev
+pnpm install
 ```
 
-Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
+2. Start the development server:
+```bash
+pnpm dev
+```
 
-You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
+3. Load the extension in Chrome:
+   - Go to `chrome://extensions/`
+   - Enable "Developer mode"
+   - Click "Load unpacked"
+   - Select the `build/chrome-mv3-dev` folder
 
-For further guidance, [visit our Documentation](https://docs.plasmo.com/)
-
-## Making production build
-
-Run the following:
+### Building for Production
 
 ```bash
 pnpm build
-# or
-npm run build
 ```
 
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
+## 🏗️ Architecture
 
-## Submit to the webstores
+- **Content Script** (`src/content.tsx`): Detects LeetCode pages and scrapes problem data
+- **Nudge Widget** (`src/components/NudgeWidget.tsx`): Floating button component
+- **Nudge Modal** (`src/components/NudgeModal.tsx`): Modal for displaying hints
+- **Nudge Service** (`src/services/nudgeService.ts`): Handles API calls (currently uses hardcoded responses)
 
-The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
+## 🔧 Technical Details
+
+- Built with [Plasmo](https://www.plasmo.com/) framework
+- React + TypeScript + Tailwind CSS
+- Manifest V3 compatible
+- Uses MutationObserver for dynamic content detection
+
+## 🎨 UI Components
+
+- **Floating Button**: Blue circular button with 💡 emoji
+- **Modal**: Clean, centered modal with problem title and hint
+- **Loading States**: Spinner and loading text
+- **Error Handling**: User-friendly error messages
+
+## 🔮 Future Enhancements
+
+- Integration with AI backend at `localhost:5001/nudge`
+- Hint history and progression tracking
+- More granular, step-based hints
+- Support for different programming languages
+- User preferences and customization
+
+## 📝 License
+
+MIT License - feel free to use and modify as needed!
+
+---
+
+Made with ❤️ for LeetCode learners
