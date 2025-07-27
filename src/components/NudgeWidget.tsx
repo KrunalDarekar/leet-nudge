@@ -8,6 +8,8 @@ interface NudgeWidgetProps {
 
 export const NudgeWidget = ({ leetCodeData }: NudgeWidgetProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isButtonHovered, setIsButtonHovered] = useState(false)
+  const [isButtonActive, setIsButtonActive] = useState(false)
 
   const handleNudgeClick = () => {
     setIsModalOpen(true)
@@ -16,20 +18,43 @@ export const NudgeWidget = ({ leetCodeData }: NudgeWidgetProps) => {
   return (
     <>
       {/* Floating Nudge Button */}
-      <div
+      <button
         style={{
           position: "fixed",
           bottom: "20px",
           right: "20px",
           zIndex: 10000,
-          cursor: "pointer"
+          background: "#fbca1f",
+          fontFamily: "inherit",
+          padding: "0.3em 0.8em",
+          fontWeight: 900,
+          fontSize: "18px",
+          border: "3px solid black",
+          borderRadius: "0.4em",
+          boxShadow: isButtonActive
+            ? "0.05em 0.05em"
+            : isButtonHovered
+            ? "0.15em 0.15em"
+            : "0.1em 0.1em",
+          color: "black",
+          cursor: "pointer",
+          transform: isButtonActive
+            ? "translate(0.05em, 0.05em)"
+            : isButtonHovered
+            ? "translate(-0.05em, -0.05em)"
+            : "none"
         }}
         onClick={handleNudgeClick}
-        title="Need a nudge?"
-        className="bg-blue-500 hover:bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-colors duration-200"
+        onMouseEnter={() => setIsButtonHovered(true)}
+        onMouseLeave={() => {
+          setIsButtonHovered(false)
+          setIsButtonActive(false)
+        }}
+        onMouseDown={() => setIsButtonActive(true)}
+        onMouseUp={() => setIsButtonActive(false)}
       >
-        <span className="text-xl">💡</span>
-      </div>
+        💡 Nudge
+      </button>
 
       {/* Nudge Modal */}
       {isModalOpen && (

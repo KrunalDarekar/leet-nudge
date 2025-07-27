@@ -37,7 +37,7 @@
     ],
     "web_accessible_resources": [
       {
-        "resources": ["scripts/inject-monaco-reader.js"],
+        "resources": ["scripts/inject-monaco-reader.js", "style.css"],
         "matches": ["<all_urls>"]
       }
     ]

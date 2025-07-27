@@ -3,6 +3,14 @@ import { useEffect, useState } from "react"
 import { NudgeWidget } from "./components/NudgeWidget"
 import type { LeetCodeData } from "./types"
 
+import cssText from "data-text:~style.css"
+ 
+export const getStyle = () => {
+  const style = document.createElement("style")
+  style.textContent = cssText
+  return style
+}
+
 export const config: PlasmoContentScript = {
   matches: ["https://leetcode.com/problems/*"]
 }
