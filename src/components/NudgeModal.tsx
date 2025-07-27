@@ -8,6 +8,8 @@ interface NudgeModalProps {
   onClose: () => void
 }
 
+
+
 export const NudgeModal = ({ leetCodeData, isOpen, onClose }: NudgeModalProps) => {
   const [nudge, setNudge] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)

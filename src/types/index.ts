@@ -3,8 +3,6 @@ export interface LeetCodeData {
   statement: string
   examples: string[]
   constraints: string[]
-  language: string
-  code: string
 }
 
 export interface NudgeResponse {

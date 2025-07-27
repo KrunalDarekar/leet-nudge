@@ -2,7 +2,6 @@ import type { PlasmoContentScript } from "plasmo"
 import { useEffect, useState } from "react"
 import { NudgeWidget } from "./components/NudgeWidget"
 import type { LeetCodeData } from "./types"
-import { extractCode, setupCodeObserver, getCurrentCode, resetCodeTracking } from "~utils/index"
 
 export const config: PlasmoContentScript = {
   matches: ["https://leetcode.com/problems/*"]
@@ -84,13 +83,6 @@ const scrapeLeetCodeData = (): LeetCodeData | null => {
       }
     }
 
-    // Set up code observer for dynamic updates
-    setupCodeObserver()
-    
-    // Get current code
-    const code = getCurrentCode()
-    console.log("Current code:", code)
-
     const languageSelector = document.querySelector('[data-cy="language-selector"]')
     const language = languageSelector?.textContent?.trim() || "Python"
 
@@ -101,8 +93,6 @@ const scrapeLeetCodeData = (): LeetCodeData | null => {
       statement,
       examples,
       constraints,
-      language,
-      code
     }
   } catch (error) {
     console.error("Error scraping LeetCode data:", error)
@@ -115,55 +105,27 @@ const LeetCodeContent = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [leetCodeData, setLeetCodeData] = useState<LeetCodeData | null>(null)
 
-  const viewLinesElement = document.querySelector('.view-lines.monaco-mouse-cursor-text')
-
   useEffect(() => {
     // Check if we're on a LeetCode problem page
     const isLeetCodeProblem = window.location.href.includes("leetcode.com/problems/")
     
     if (isLeetCodeProblem) {
-      // Reset code tracking when switching problems
-      resetCodeTracking()
       
       // Wait for page to load completely
       const checkForElements = () => {
         const data = scrapeLeetCodeData()
-        if (data && data.title !== "Unknown Problem") {
+        if (data && data.title !== "Unknown Problem" ) {
           setLeetCodeData(data)
           setIsVisible(true)
         } else {
-          // Retry after a short delay if elements aren't loaded yet
           setTimeout(checkForElements, 1000)
         }
       }
 
       // Initial check
       checkForElements()
-
-      // Set up mutation observer to detect dynamic content changes
-      const observer = new MutationObserver(() => {
-        if (!isVisible) {
-          checkForElements()
-        }
-      })
-
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true
-      })
-
-      return () => observer.disconnect()
     }
   }, [isVisible])
-
-  useEffect(() => {
-    setupCodeObserver()
-    const code = getCurrentCode()
-    setLeetCodeData({
-      ...leetCodeData,
-      code
-    })
-  }, [viewLinesElement])
 
   if (!isVisible || !leetCodeData) {
     return null
