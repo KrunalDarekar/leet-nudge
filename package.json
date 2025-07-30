@@ -6,9 +6,8 @@
   "author": "Krunal Darekar <krunaldarekar29@gmail.com>",
   "scripts": {
     "compile-scripts": "tsc -p tsconfig.scripts.json",
-    "copy-scripts-to-prod": "node src/scripts/copy-to-prod.js",
     "dev": "npm run compile-scripts && plasmo dev",
-    "build": "npm run compile-scripts && plasmo build && npm run copy-scripts-to-prod",
+    "build": "npm run compile-scripts && plasmo build && cp -r build/chrome-mv3-dev/scripts build/chrome-mv3-prod/scripts",
     "package": "plasmo package"
   },
   "dependencies": {
