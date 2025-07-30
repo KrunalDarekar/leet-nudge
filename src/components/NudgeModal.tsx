@@ -75,31 +75,6 @@ export const NudgeModal = ({ leetCodeData, isOpen, onClose }: NudgeModalProps) =
           </button>
         </div>
 
-        {/* Problem Statement */}
-        <div className="mb-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-2">Problem Statement:</h3>
-          <p className="text-sm text-gray-600 mb-3">{leetCodeData.statement}</p>
-          
-          {leetCodeData.examples.length > 0 && (
-            <div className="mb-3">
-              <h4 className="text-sm font-semibold text-gray-700 mb-1">Examples:</h4>
-              {leetCodeData.examples.map((example, index) => (
-                <p key={index} className="text-xs text-gray-600 mb-1">{example}</p>
-              ))}
-            </div>
-          )}
-          
-          {leetCodeData.constraints.length > 0 && (
-            <div className="mb-3">
-              <h4 className="text-sm font-semibold text-gray-700 mb-1">Constraints:</h4>
-              {leetCodeData.constraints.map((constraint, index) => (
-                <p key={index} className="text-xs text-gray-600 mb-1">{constraint}</p>
-              ))}
-            </div>
-          )}
-        </div>
-
-
         {/* Content */}
         <div className="mb-6">
           {isLoading ? (

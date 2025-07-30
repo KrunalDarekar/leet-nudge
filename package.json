@@ -5,8 +5,10 @@
   "description": "Get helpful hints while solving LeetCode problems without spoiling the solution",
   "author": "Krunal Darekar <krunaldarekar29@gmail.com>",
   "scripts": {
-    "dev": "plasmo dev",
-    "build": "plasmo build",
+    "compile-scripts": "tsc -p tsconfig.scripts.json",
+    "copy-scripts-to-prod": "node src/scripts/copy-to-prod.js",
+    "dev": "npm run compile-scripts && plasmo dev",
+    "build": "npm run compile-scripts && plasmo build && npm run copy-scripts-to-prod",
     "package": "plasmo package"
   },
   "dependencies": {

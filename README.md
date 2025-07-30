@@ -48,6 +48,15 @@ pnpm build
 - Built with [Plasmo](https://www.plasmo.com/) framework
 - React + TypeScript + Tailwind CSS
 - Manifest V3 compatible
+- Custom TypeScript compilation for scripts directory
+
+## 📜 Scripts Compilation
+
+The project includes a custom TypeScript compilation process for scripts in the `src/scripts` directory:
+
+- **Development**: Scripts are compiled automatically when running `pnpm dev`
+- **Production**: Scripts are compiled and copied to the production build when running `pnpm build`
+- **Configuration**: See `tsconfig.scripts.json` for the TypeScript configuration specific to scripts
 - Uses MutationObserver for dynamic content detection
 
 ## 🎨 UI Components

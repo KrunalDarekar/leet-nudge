@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./build/chrome-mv3-dev/scripts",
+    "module": "ESNext",
+    "target": "ES2020",
+    "noEmit": false
+  },
+  "include": ["src/scripts/**/*.ts"],
+  "exclude": ["node_modules"]
+}
